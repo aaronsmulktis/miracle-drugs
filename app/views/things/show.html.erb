@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @thing.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @thing.description %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @thing.content %>
+</p>
+
+<p>
+  <strong>Uri:</strong>
+  <%= @thing.uri %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @thing.price %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @thing.created_at %>
+</p>
+
+<p>
+  <strong>Likes:</strong>
+  <%= @thing.likes %>
+</p>
+
+<p>
+  <strong>Available at:</strong>
+  <%= @thing.available_at %>
+</p>
+
+<p>
+  <strong>Discount:</strong>
+  <%= @thing.discount %>
+</p>
+
+<p>
+  <strong>Is available:</strong>
+  <%= @thing.is_available %>
+</p>
+
+<p>
+  <strong>Keywords:</strong>
+  <%= @thing.keywords %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @thing.slug %>
+</p>
+
+<%= link_to 'Edit', edit_thing_path(@thing) %> |
+<%= link_to 'Back', things_path %>

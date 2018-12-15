@@ -1,0 +1,47 @@
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+#
+
+development:
+  access_key_id: <% ENV['AWS_ACCESS_KEY_ID'] %>
+  secret_access_key: <% ENV['AWS_SECRET_ACCESS_ID'] %>
+  adapter: postgresql
+  encoding: unicode
+  database: miracle_drugs_dev
+  pool: 5
+  username: <% ENV['DB_USER'] %>
+  password: <% ENV['DB_PASS'] %>
+
+staging:
+  access_key_id: <% ENV['AWS_ACCESS_KEY_ID'] %>
+  secret_access_key: <% ENV['AWS_SECRET_ACCESS_ID'] %>
+  adapter: postgresql
+  encoding: unicode
+  database: miracle_drugs_dev
+  pool: 5
+  username: <% ENV['DB_USER'] %>
+  password: <% ENV['DB_PASS'] %>
+
+test:
+  access_key_id: <% ENV['AWS_ACCESS_KEY_ID'] %>
+  secret_access_key: <% ENV['AWS_SECRET_ACCESS_ID'] %>
+  adapter: postgresql
+  encoding: unicode
+  database: miracle_drugs_test
+  pool: 5
+  username: <% ENV['DB_USER'] %>
+  password: <% ENV['DB_PASS'] %>
+
+production:
+  access_key_id: <% ENV['AWS_ACCESS_KEY_ID'] %>
+  secret_access_key: <% ENV['AWS_SECRET_ACCESS_ID'] %>
+  adapter: postgresql
+  encoding: unicode
+  host: <% ENV['DB_HOST'] %>
+  database: <% ENV['DB_NAME'] %>
+  pool: 5
+  username: <% ENV['DB_USER'] %>
+  password: <% ENV['DB_PASS'] %>
