@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_14_212668) do
+ActiveRecord::Schema.define(version: 2019_01_21_092727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,40 @@ ActiveRecord::Schema.define(version: 2018_12_14_212668) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "spree_ad_hoc_option_types", id: :serial, force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "option_type_id"
+    t.string "price_modifier_type"
+    t.boolean "is_required", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "position", default: 0
+  end
+
+  create_table "spree_ad_hoc_option_values", id: :serial, force: :cascade do |t|
+    t.integer "ad_hoc_option_type_id"
+    t.integer "option_value_id"
+    t.decimal "price_modifier", precision: 8, scale: 2, default: "0.0", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "position"
+    t.boolean "selected"
+    t.decimal "cost_price_modifier", precision: 8, scale: 2
+  end
+
+  create_table "spree_ad_hoc_option_values_line_items", id: :serial, force: :cascade do |t|
+    t.integer "line_item_id"
+    t.integer "ad_hoc_option_value_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "spree_ad_hoc_variant_exclusions", id: :serial, force: :cascade do |t|
+    t.integer "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "spree_addresses", id: :serial, force: :cascade do |t|
@@ -184,6 +218,30 @@ ActiveRecord::Schema.define(version: 2018_12_14_212668) do
     t.integer "stock_location_id"
     t.datetime "created_at", precision: 6
     t.datetime "updated_at", precision: 6
+  end
+
+  create_table "spree_customizable_product_options", id: :serial, force: :cascade do |t|
+    t.integer "product_customization_type_id"
+    t.integer "position"
+    t.string "presentation", null: false
+    t.string "name", null: false
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "spree_customized_product_options", id: :serial, force: :cascade do |t|
+    t.integer "product_customization_id"
+    t.integer "customizable_product_option_id"
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "customization_image"
+  end
+
+  create_table "spree_excluded_ad_hoc_option_values", id: :serial, force: :cascade do |t|
+    t.integer "ad_hoc_variant_exclusion_id"
+    t.integer "ad_hoc_option_value_id"
   end
 
   create_table "spree_inventory_units", id: :serial, force: :cascade do |t|
@@ -398,6 +456,26 @@ ActiveRecord::Schema.define(version: 2018_12_14_212668) do
     t.string "country_iso", limit: 2
     t.index ["country_iso"], name: "index_spree_prices_on_country_iso"
     t.index ["variant_id", "currency"], name: "index_spree_prices_on_variant_id_and_currency"
+  end
+
+  create_table "spree_product_customization_types", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.string "presentation"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "spree_product_customization_types_products", id: false, force: :cascade do |t|
+    t.integer "product_customization_type_id"
+    t.integer "product_id"
+  end
+
+  create_table "spree_product_customizations", id: :serial, force: :cascade do |t|
+    t.integer "line_item_id"
+    t.integer "product_customization_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "spree_product_option_types", id: :serial, force: :cascade do |t|
@@ -1193,7 +1271,7 @@ ActiveRecord::Schema.define(version: 2018_12_14_212668) do
     t.string "uri"
     t.string "past_uris", default: [], array: true
     t.money "price", scale: 2
-    t.datetime "created_at", null: false
+    t.datetime "created_at"
     t.integer "likes"
     t.string "like_history", default: [], array: true
     t.integer "saves"
@@ -1205,7 +1283,6 @@ ActiveRecord::Schema.define(version: 2018_12_14_212668) do
     t.boolean "is_available"
     t.string "keywords", default: [], array: true
     t.string "slug"
-    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

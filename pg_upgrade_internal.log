@@ -1,0 +1,24 @@
+Running in verbose mode
+
+-----------------------------------------------------------------
+  pg_upgrade run on Sun Jan 20 22:40:13 2019
+-----------------------------------------------------------------
+
+Finding the real data directory for the source cluster      could not get data directory using "/usr/local/Cellar/postgresql/9.6.5/bin/postgres" -D "/usr/local/var/postgres" -C data_directory: No such file or directory
+
+-----------------------------------------------------------------
+  pg_upgrade run on Sun Jan 20 22:49:27 2019
+-----------------------------------------------------------------
+
+Finding the real data directory for the old cluster         ok
+check for "/usr/local/var/postgres94/pg_clog" failed: No such file or directory
+
+Running in verbose mode
+
+-----------------------------------------------------------------
+  pg_upgrade run on Sun Jan 20 22:50:06 2019
+-----------------------------------------------------------------
+
+Finding the real data directory for the old cluster         ok
+check for "/usr/local/var/postgres94/pg_clog" failed: No such file or directory
+

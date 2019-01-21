@@ -40,8 +40,18 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'solidus'
 gem 'solidus_auth_devise'
 
+# gem 'globalize', '~> 5.1.0'
+# gem 'solidus_i18n', '~> 2.0'
+# gem 'rails-i18n', '~> 5.1'
+# gem 'kaminari-i18n', '~> 0.5.0'
+# gem 'routing-filter', '~> 0.6.0'
+
 # Themes
-gem 'solidus_bootstrap_frontend', git: 'https://github.com/2beDigital/solidus_bootstraps_frontend.git', branch: 'master'
+# gem 'solidus_bootstrap_frontend', git: 'https://github.com/2beDigital/solidus_bootstraps_frontend.git', branch: 'master'
+
+# Solidus Add-ons
+gem 'solidus_flexi_variants', git: 'https://github.com/boomerdigital/solidus_flexi_variants.git', branch: 'master'
+gem 'solidus_prototypes'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
